@@ -1,0 +1,8 @@
+linux32
+linux64
+win32
+win64
+Sia
+Sia-UI
+*.zip
+sia.wallet
