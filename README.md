@@ -9,3 +9,4 @@ This package will build complete binaries (and folders) for Sia with a graphical
 * python
 * zip
 * git
+* gconf library
