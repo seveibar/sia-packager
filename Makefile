@@ -1,32 +1,19 @@
-all: download-sia-ui linux32 linux64 win32 darwin
-linux32: download-linux32 package-linux32
-linux64: download-linux64 package-linux64
+all: download-sia-ui linux win32 darwin
+linux: download-linux package-linux
 win32: download-win32 package-win32
 darwin: download-darwin package-darwin
 
-download-linux32:
-	wget https://github.com/atom/atom-shell/releases/download/v0.20.7/atom-shell-v0.20.7-linux-ia32.zip
-	unzip atom-shell-v0.20.7-linux-ia32.zip -d linux32
-	rm atom-shell-v0.20.7-linux-ia32.zip
-
-package-linux32:
-	rm -r linux32/resources/default_app
-	cp -r Sia-UI linux32/resources/default_app
-	mv linux32/atom linux32/sia
-	zip -r linux32.zip linux32
-	rm -rf linux32
-
-download-linux64:
+download-linux:
 	wget https://github.com/atom/atom-shell/releases/download/v0.20.7/atom-shell-v0.20.7-linux-x64.zip
-	unzip atom-shell-v0.20.7-linux-x64.zip -d linux64
+	unzip atom-shell-v0.20.7-linux-x64.zip -d linux
 	rm atom-shell-v0.20.7-linux-x64.zip
 
-package-linux64:
-	rm -r linux64/resources/default_app
-	cp -r Sia-UI linux64/resources/default_app
-	mv linux64/atom linux64/sia
-	zip -r linux64.zip linux64
-	rm -rf linux64
+package-linux:
+	rm -r linux/resources/default_app
+	cp -r Sia-UI linux/resources/default_app
+	mv linux/atom linux/sia
+	zip -r linux.zip linux
+	rm -rf linux
 
 download-win32:
 	wget https://github.com/atom/atom-shell/releases/download/v0.20.7/atom-shell-v0.20.7-win32-ia32.zip
@@ -61,6 +48,7 @@ download-sia:
 download-sia-ui:
 	git clone git@github.com:NebulousLabs/Sia-UI.git
 	cd Sia-UI && make
+
 clean:
-	rm -rf linux32 linux64 Sia-UI Sia hostdir darwin
-	rm sia.wallet darwin.zip win32.zip linux32.zip linux64.zip
+	rm -rf linux linux Sia-UI Sia hostdir darwin
+	rm sia.wallet darwin.zip win32.zip linux.zip
