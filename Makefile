@@ -36,7 +36,8 @@ download-darwin:
 package-darwin:
 	rm -r darwin/Atom.app/Contents/Resources/default_app
 	cp -r Sia-UI darwin/Atom.app/Contents/Resources/default_app
-	python darwin-configure.py
+	# We need to rename CFBundleDisplayName and CFBundleName
+	sed -i -- 's/<string>Atom<\/string>/<string>Sia<\/string>/g' darwin/Atom.app/Contents/Info.plist
 	mv darwin/Atom.app/Contents/MacOS/Atom darwin/Atom.app/Contents/MacOS/Sia
 	zip -r darwin.zip darwin
 	rm -rf darwin
